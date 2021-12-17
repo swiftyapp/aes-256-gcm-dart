@@ -10,7 +10,6 @@ final int TAG_LENGTH = 16;
 final int SALT_LENGTH = 16;
 final int KEY_ITERATIONS_COUNT = 10000;
 
-
 class Aes256Gcm {
   static Future<String> encrypt(String cleartext, String password) async {
     final salt = randomBytes(SALT_LENGTH);
@@ -24,7 +23,8 @@ class Aes256Gcm {
       nonce: iv,
     );
 
-    final List<int> result = salt + secretBox.nonce + secretBox.cipherText + secretBox.mac.bytes;
+    final List<int> result =
+        salt + secretBox.nonce + secretBox.cipherText + secretBox.mac.bytes;
 
     return hex.encode(result);
   }
@@ -34,16 +34,13 @@ class Aes256Gcm {
     final salt = cText.sublist(0, SALT_LENGTH);
     final iv = cText.sublist(SALT_LENGTH, SALT_LENGTH + IV_LENGTH);
     final mac = cText.sublist(cText.length - TAG_LENGTH);
-    final text = cText.sublist(SALT_LENGTH + IV_LENGTH, cText.length - TAG_LENGTH);
+    final text =
+        cText.sublist(SALT_LENGTH + IV_LENGTH, cText.length - TAG_LENGTH);
 
     final algorithm = AesGcm.with256bits();
     final key = await deriveKey(password, salt);
 
-    final secretBox = new SecretBox(
-      text,
-      nonce: iv,
-      mac: new Mac(mac)
-    );
+    final secretBox = new SecretBox(text, nonce: iv, mac: new Mac(mac));
 
     final cleartext = await algorithm.decrypt(
       secretBox,

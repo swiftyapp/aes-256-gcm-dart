@@ -27,7 +27,8 @@ void main() {
   });
 
   test('Decrypts data encrypted with JavaScript', () async {
-    final encrypted = '6d38ce529ee3cea82ba7580270cf63a22aa41364c35b84b54e92a342b8871a77a8faa30cbfac35948e359362e4417d39993035dde37791233eae72779768495f4e14c62c9c';
+    final encrypted =
+        '6d38ce529ee3cea82ba7580270cf63a22aa41364c35b84b54e92a342b8871a77a8faa30cbfac35948e359362e4417d39993035dde37791233eae72779768495f4e14c62c9c';
     final password = 'mysecretpassword';
 
     String decrypted = await Aes256Gcm.decrypt(encrypted, password);
