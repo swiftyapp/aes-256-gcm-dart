@@ -1,4 +1,4 @@
-# aes-256-gcm-js
+# aes-256-gcm-dart
 
 AES 256 GCM encryption algorithm in Dart
 
