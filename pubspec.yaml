@@ -1,0 +1,14 @@
+name: aes256gcm
+description: AES-256-GCM symmetric encryption functions that allow to encrypt/decrypt package
+version: 1.0.0
+repository: https://github.com/swiftyapp/aes-256-gcm-dart
+
+environment:
+  sdk: ">=2.14.0 <3.0.0"
+
+dependencies:
+  cryptography: ^2.0.5
+  convert: ^3.0.1
+
+dev_dependencies:
+  test: ^1.20.0
