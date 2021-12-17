@@ -11,6 +11,7 @@ final int SALT_LENGTH = 16;
 final int KEY_ITERATIONS_COUNT = 10000;
 
 class Aes256Gcm {
+  /// Encrypts passed [cleartext] with key generated based on [password] argument
   static Future<String> encrypt(String cleartext, String password) async {
     final salt = randomBytes(SALT_LENGTH);
     final iv = randomBytes(IV_LENGTH);
@@ -29,6 +30,7 @@ class Aes256Gcm {
     return hex.encode(result);
   }
 
+  /// Decrypts passed [ciphertext] with key generated based on [password] argument
   static Future<String> decrypt(String cipherText, String password) async {
     final cText = hex.decode(cipherText);
     final salt = cText.sublist(0, SALT_LENGTH);
@@ -50,6 +52,7 @@ class Aes256Gcm {
     return utf8.decode(cleartext);
   }
 
+  /// Password Based Key Deriviation function
   static Future<SecretKey> deriveKey(String password, List<int> salt) async {
     final pbkdf2 = Pbkdf2(
       macAlgorithm: Hmac.sha512(),
@@ -65,6 +68,7 @@ class Aes256Gcm {
     return await secret;
   }
 
+  /// Generates a random byte sequence of given [length]
   static Uint8List randomBytes(int length) {
     Uint8List buffer = new Uint8List(length);
     Random range = new Random.secure();

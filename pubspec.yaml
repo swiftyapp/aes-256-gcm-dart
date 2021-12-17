@@ -1,6 +1,6 @@
 name: aes256gcm
 description: AES-256-GCM symmetric encryption functions that allow to encrypt/decrypt package
-version: 1.0.0
+version: 1.0.1
 repository: https://github.com/swiftyapp/aes-256-gcm-dart
 
 environment:
